@@ -1,0 +1,28 @@
+# Запуск всего проекта одной командой: docker compose up --build
+# Два сервиса: redis (хранилище истории и список онлайн) и app (Node.js-чат).
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: chat-redis
+    # сохраняем данные на диск, чтобы история переживала перезапуск
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+
+  app:
+    build: .
+    container_name: chat-app
+    environment:
+      PORT: 3000
+      # внутри compose-сети Redis доступен по имени сервиса
+      REDIS_URL: redis://redis:6379
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+volumes:
+  redis-data:
