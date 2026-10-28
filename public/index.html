@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Чат — Socket.IO и Redis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Экран входа -->
+  <main id="login" class="login">
+    <form id="login-form" class="login__card" autocomplete="off">
+      <h1>Чат</h1>
+      <p class="muted">Введите ник, чтобы войти в общие комнаты и писать личные сообщения.</p>
+      <input id="nick-input" name="nick" type="text" placeholder="Ваш ник" maxlength="20" required autofocus>
+      <button type="submit" class="btn">Войти</button>
+      <p id="login-error" class="error" role="alert"></p>
+    </form>
+  </main>
+
+  <!-- Основной экран чата -->
+  <div id="chat" class="chat" hidden>
+    <aside class="sidebar">
+      <header class="sidebar__head">
+        <span class="me">Вы: <strong id="me-nick"></strong></span>
+        <span id="conn" class="status status--on" title="Соединение с сервером"></span>
+      </header>
+
+      <section>
+        <div class="sidebar__title">
+          <h2>Комнаты</h2>
+          <button id="add-room" class="icon-btn" title="Создать комнату" type="button">+</button>
+        </div>
+        <ul id="rooms" class="list"></ul>
+        <form id="room-form" class="room-form" hidden>
+          <input id="room-input" type="text" placeholder="Название комнаты" maxlength="24">
+        </form>
+      </section>
+
+      <section>
+        <div class="sidebar__title"><h2>Онлайн</h2><span id="users-count" class="muted"></span></div>
+        <ul id="users" class="list"></ul>
+      </section>
+    </aside>
+
+    <section class="dialog">
+      <header class="dialog__head">
+        <h2 id="dialog-title"></h2>
+        <span id="dialog-sub" class="muted"></span>
+      </header>
+      <div id="messages" class="messages" aria-live="polite"></div>
+      <form id="send-form" class="send" autocomplete="off">
+        <input id="text-input" type="text" placeholder="Напишите сообщение…" maxlength="1000" required>
+        <button type="submit" class="btn">Отправить</button>
+      </form>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
