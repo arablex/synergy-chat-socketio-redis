@@ -1,0 +1,21 @@
+{
+  "name": "synergy-chat",
+  "version": "1.0.0",
+  "description": "Многопользовательский чат: Node.js, Express, Socket.IO и Redis (групповые комнаты и личные сообщения)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node test/clients.test.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@socket.io/redis-adapter": "^8.3.0",
+    "express": "^4.21.2",
+    "redis": "^6.3.0",
+    "socket.io": "^4.8.4"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.8.4"
+  }
+}

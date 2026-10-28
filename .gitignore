@@ -1,0 +1,9 @@
+# служебные и технические файлы Node.js
+node_modules/
+npm-debug.log*
+.env
+.DS_Store
+# данные Redis, если запускать redis-server локально
+dump.rdb
+# временные файлы
+.tmp/
