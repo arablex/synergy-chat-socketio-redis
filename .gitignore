@@ -7,3 +7,7 @@ npm-debug.log*
 dump.rdb
 # временные файлы
 .tmp/
+# материалы для сдачи (не код)
+screenshots/
+answer.md
+submit.zip
